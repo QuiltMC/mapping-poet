@@ -5,8 +5,8 @@ plugins {
     id("org.cadixdev.licenser") version "0.5.0"
 }
 
-group 'net.fabricmc'
-version '0.2.8'
+group 'org.quiltmc'
+version '0.3.0'
 
 def ENV = System.getenv()
 version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
@@ -14,14 +14,14 @@ version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
 repositories {
     mavenCentral()
     maven {
-        name = 'Fabric'
-        url = 'https://maven.modmuss50.me/'
+        name = 'Quilt'
+        url = 'https://maven.quiltmc.org/repository/release/'
     }
 }
 
 dependencies {
     implementation 'com.squareup:javapoet:1.13.0'
-    implementation 'net.fabricmc:tiny-mappings-parser:0.3.0+build.17'
+    implementation 'org.quiltmc:tiny-mappings-parser:0.3.0'
     runtimeOnly 'com.google.guava:guava:30.1.1-jre'
 
     implementation 'org.ow2.asm:asm:9.1'
@@ -56,7 +56,7 @@ jar {
     manifest {
         attributes 'Implementation-Title': 'MappingPoet',
                 'Implementation-Version': archiveVersion,
-                'Main-Class': "net.fabricmc.mappingpoet.Main"
+                'Main-Class': "org.quiltmc.mappingpoet.Main"
     }
 }
 
@@ -85,17 +85,3 @@ publishing {
         }
     }
 }
-
-// A task to ensure that the version being released has not already been released.
-task checkVersion {
-    doFirst {
-        def xml = new URL("https://maven.fabricmc.net/net/fabricmc/mappingpoet/maven-metadata.xml").text
-        def metadata = new XmlSlurper().parseText(xml)
-        def versions = metadata.versioning.versions.version*.text();
-        if (versions.contains(version)) {
-            throw new RuntimeException("${version} has already been released!")
-        }
-    }
-}
-
-publish.mustRunAfter checkVersion

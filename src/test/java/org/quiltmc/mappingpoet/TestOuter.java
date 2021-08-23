@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
+package org.quiltmc.mappingpoet;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -73,7 +73,7 @@ class Outer {
 class OuterTwo<T> {
 	static class InnerOne<G> {
 		class InnerTwo {
-			InnerTwo(InnerOne<G>net.fabricmc.mappingpoet.OuterTwo.InnerOne.this) {
+			InnerTwo(InnerOne<G>OuterTwo.InnerOne.this) {
 
 			}
 

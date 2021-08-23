@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
+package org.quiltmc.mappingpoet;
 
 import java.net.URLClassLoader;
 import java.util.Collections;
@@ -33,13 +33,12 @@ import com.squareup.javapoet.WildcardTypeName;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.objectweb.asm.signature.SignatureReader;
-
-import net.fabricmc.mappingpoet.signature.ClassSignature;
-import net.fabricmc.mappingpoet.signature.MethodSignature;
-import net.fabricmc.mappingpoet.signature.PoetClassMethodSignatureVisitor;
-import net.fabricmc.mappingpoet.signature.PoetTypeSignatureWriter;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationBank;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationMapping;
+import org.quiltmc.mappingpoet.signature.ClassSignature;
+import org.quiltmc.mappingpoet.signature.MethodSignature;
+import org.quiltmc.mappingpoet.signature.PoetClassMethodSignatureVisitor;
+import org.quiltmc.mappingpoet.signature.PoetTypeSignatureWriter;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationBank;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationMapping;
 
 public class SignaturesTest {
 
@@ -79,16 +78,16 @@ public class SignaturesTest {
 		TestOuter<Integer>.Inner<Comparator<Integer>, URLClassLoader>.ExtraInner<UnaryOperator<Map<int[][], BiFunction<Comparator<Integer>, Integer, URLClassLoader>>>> local = new TestOuter<Integer>().new Inner<Comparator<Integer>, URLClassLoader>().new ExtraInner<UnaryOperator<Map<int[][], BiFunction<Comparator<Integer>, Integer, URLClassLoader>>>>();
 		local.hashCode();
 
-		// signature Lnet/fabricmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;
-		String signature = "Lnet/fabricmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;";
+		// signature Lorg/quiltmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;
+		String signature = "Lorg/quiltmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;";
 		Map.Entry<Integer, TypeName> result = Signatures.parseParameterizedType(signature, 0);
 
-		Assertions.assertEquals(322, result.getKey().intValue());
-		Assertions.assertEquals("net.fabricmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>", result.getValue().toString());
+		Assertions.assertEquals(321, result.getKey().intValue());
+		Assertions.assertEquals("org.quiltmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>", result.getValue().toString());
 
 		PoetTypeSignatureWriter writer = new PoetTypeSignatureWriter(TypeAnnotationBank.EMPTY, s -> false);
 		new SignatureReader(signature).acceptType(writer);
-		Assertions.assertEquals("net.fabricmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>", writer.compute().toString());
+		Assertions.assertEquals("org.quiltmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>", writer.compute().toString());
 	}
 
 	@Test
@@ -96,16 +95,16 @@ public class SignaturesTest {
 		@SuppressWarnings("unchecked")
 		TestOuter<Integer>.Inner<Comparator<Integer>, URLClassLoader>.ExtraInner<UnaryOperator<Map<int[][], BiFunction<Comparator<Integer>, Integer, URLClassLoader>>>>[][] arr = (TestOuter<Integer>.Inner<Comparator<Integer>, URLClassLoader>.ExtraInner<UnaryOperator<Map<int[][], BiFunction<Comparator<Integer>, Integer, URLClassLoader>>>>[][]) new TestOuter<?>.Inner<?, ?>.ExtraInner<?>[0][];
 		arr.toString();
-		// signature [[Lnet/fabricmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;
-		String arraySignature = "[[Lnet/fabricmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;";
+		// signature [[Lorg/quiltmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;
+		String arraySignature = "[[Lorg/quiltmc/mappingpoet/TestOuter<Ljava/lang/Integer;>.Inner<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/net/URLClassLoader;>.ExtraInner<Ljava/util/function/UnaryOperator<Ljava/util/Map<[[ILjava/util/function/BiFunction<Ljava/util/Comparator<Ljava/lang/Integer;>;Ljava/lang/Integer;Ljava/net/URLClassLoader;>;>;>;>;";
 		Map.Entry<Integer, TypeName> result = Signatures.parseParameterizedType(arraySignature, 0);
 
-		Assertions.assertEquals(324, result.getKey().intValue());
-		Assertions.assertEquals("net.fabricmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>[][]", result.getValue().toString());
+		Assertions.assertEquals(323, result.getKey().intValue());
+		Assertions.assertEquals("org.quiltmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>[][]", result.getValue().toString());
 
 		PoetTypeSignatureWriter writer = new PoetTypeSignatureWriter(TypeAnnotationBank.EMPTY, s -> false);
 		new SignatureReader(arraySignature).acceptType(writer);
-		Assertions.assertEquals("net.fabricmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>[][]", writer.compute().toString());
+		Assertions.assertEquals("org.quiltmc.mappingpoet.TestOuter<java.lang.Integer>.Inner<java.util.Comparator<java.lang.Integer>, java.net.URLClassLoader>.ExtraInner<java.util.function.UnaryOperator<java.util.Map<int[][], java.util.function.BiFunction<java.util.Comparator<java.lang.Integer>, java.lang.Integer, java.net.URLClassLoader>>>>[][]", writer.compute().toString());
 	}
 
 	@Test
@@ -201,8 +200,8 @@ public class SignaturesTest {
 
 	@Test
 	public void testCheckHeadSignature() {
-		// signature <E:Ljava/lang/Throwable;>(Lnet/fabricmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;
-		String raw = "<E:Ljava/lang/Throwable;>(Lnet/fabricmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;";
+		// signature <E:Ljava/lang/Throwable;>(Lorg/quiltmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;
+		String raw = "<E:Ljava/lang/Throwable;>(Lorg/quiltmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;";
 		MethodSignature parsed = Signatures.parseMethodSignature(raw);
 		Assertions.assertIterableEquals(Collections.singleton(TypeVariableName.get("E", ClassName.get(Throwable.class))), parsed.generics());
 		ClassName headCheckerClass = ClassName.get(Signatures.class).nestedClass("HeadChecker");
@@ -213,8 +212,8 @@ public class SignaturesTest {
 
 	@Test
 	public void testCheckHeadSignatureVisitor() {
-		// signature <E:Ljava/lang/Throwable;>(Lnet/fabricmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;
-		String raw = "<E:Ljava/lang/Throwable;>(Lnet/fabricmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;";
+		// signature <E:Ljava/lang/Throwable;>(Lorg/quiltmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;
+		String raw = "<E:Ljava/lang/Throwable;>(Lorg/quiltmc/mappingpoet/Signatures$HeadChecker<TE;>;)V^TE;";
 		PoetClassMethodSignatureVisitor visitor = new PoetClassMethodSignatureVisitor(TypeAnnotationMapping.EMPTY, s -> false, false);
 		new SignatureReader(raw).accept(visitor);
 		MethodSignature parsed = visitor.collectMethod();
@@ -250,10 +249,10 @@ public class SignaturesTest {
 		// https://docs.oracle.com/javase/specs/jvms/se15/html/jvms-4.html#jvms-4.7.20.2-220-B-A.1
 		Outer.@TestAnno("a") MiddleStatic<@TestAnno("b") Object>.@TestAnno("c") Inner<@TestAnno("d") Integer> instance2 = new Outer.MiddleStatic<>().new Inner<Integer>();
 
-		String input = "Lnet/fabricmc/mappingpoet/Outer$MiddleStatic<Ljava/lang/Object;>.Inner<Ljava/lang/Integer;>;";
+		String input = "Lorg/quiltmc/mappingpoet/Outer$MiddleStatic<Ljava/lang/Object;>.Inner<Ljava/lang/Integer;>;";
 
 		TypeName name = Signatures.parseFieldSignature(input);
-		Assertions.assertEquals("net.fabricmc.mappingpoet.Outer.MiddleStatic<java.lang.Object>.Inner<java.lang.Integer>", name.toString());
+		Assertions.assertEquals("org.quiltmc.mappingpoet.Outer.MiddleStatic<java.lang.Object>.Inner<java.lang.Integer>", name.toString());
 
 		PoetTypeSignatureWriter writer = new PoetTypeSignatureWriter(TypeAnnotationBank.EMPTY, s -> false);
 		new SignatureReader(input).acceptType(writer);

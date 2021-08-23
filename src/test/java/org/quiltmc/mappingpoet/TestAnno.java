@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet.signature;
+package org.quiltmc.mappingpoet;
 
-import java.util.List;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeVariableName;
-
-public record MethodSignature(List<TypeVariableName> generics,
-															List<TypeName> parameters, TypeName result,
-															List<TypeName> thrown) {
-
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE_USE)
+public @interface TestAnno {
+	String value() default "";
 }

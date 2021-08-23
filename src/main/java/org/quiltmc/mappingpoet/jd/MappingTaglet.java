@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet.jd;
+package org.quiltmc.mappingpoet.jd;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -56,7 +56,7 @@ public final class MappingTaglet implements Taglet {
 		boolean typeDecl = element instanceof TypeElement; // means it's a class, itf, enum, etc.
 		StringBuilder builder = new StringBuilder();
 		builder.append("<dt>Mappings:</dt>\n");
-		builder.append("<dd><div class=\"fabric\"><table class=\"mapping\" summary=\"Mapping data\">\n");
+		builder.append("<dd><div class=\"quilt\"><table class=\"mapping\" summary=\"Mapping data\">\n");
 		builder.append("<thead>\n");
 		builder.append("<th>Namespace</th>\n");
 		builder.append("<th>Name</th>\n");

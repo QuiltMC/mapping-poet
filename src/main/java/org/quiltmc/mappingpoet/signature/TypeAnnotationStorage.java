@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet.signature;
+package org.quiltmc.mappingpoet.signature;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +25,7 @@ import com.squareup.javapoet.AnnotationSpec;
 import org.objectweb.asm.TypePath;
 import org.objectweb.asm.TypeReference;
 import org.objectweb.asm.tree.TypeAnnotationNode;
-
-import net.fabricmc.mappingpoet.FieldBuilder;
+import org.quiltmc.mappingpoet.FieldBuilder;
 
 public final class TypeAnnotationStorage implements TypeAnnotationMapping, TypeAnnotationBank {
 

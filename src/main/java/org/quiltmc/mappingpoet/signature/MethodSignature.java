@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet.signature;
+package org.quiltmc.mappingpoet.signature;
 
-import org.objectweb.asm.TypeReference;
+import java.util.List;
 
-/**
- * The collection of type annotations from a bytecode structure that stores type annotations.
- */
-public interface TypeAnnotationMapping {
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeVariableName;
 
-	TypeAnnotationMapping EMPTY = reference -> TypeAnnotationBank.EMPTY;
+public record MethodSignature(List<TypeVariableName> generics,
+															List<TypeName> parameters, TypeName result,
+															List<TypeName> thrown) {
 
-	// implNote: TypeReference is not a pojo! No equals or hash!
-	TypeAnnotationBank getBank(TypeReference reference);
 }

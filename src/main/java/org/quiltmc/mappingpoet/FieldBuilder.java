@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
+package org.quiltmc.mappingpoet;
 
 import java.util.AbstractMap;
 import java.util.ArrayDeque;
@@ -37,14 +37,14 @@ import org.objectweb.asm.TypeReference;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
+import org.quiltmc.mappingpoet.signature.AnnotationAwareSignatures;
+import org.quiltmc.mappingpoet.signature.ClassStaticContext;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationBank;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationMapping;
 
 import net.fabricmc.mapping.util.EntryTriple;
-import net.fabricmc.mappingpoet.signature.AnnotationAwareDescriptors;
-import net.fabricmc.mappingpoet.signature.AnnotationAwareSignatures;
-import net.fabricmc.mappingpoet.signature.ClassStaticContext;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationBank;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationMapping;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationStorage;
+import org.quiltmc.mappingpoet.signature.AnnotationAwareDescriptors;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationStorage;
 
 public class FieldBuilder {
 	private final MappingsStore mappings;

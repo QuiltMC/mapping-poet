@@ -1,5 +1,5 @@
 tiny	2	0	intermediary	official	named
 	notice	This is an example to test functionalities!
-c	net/fabricmc/mappingpoet/Outer	a	net/fabricmc/mappingpoet/Outer
-	m	(Lnet/fabricmc/mappingpoet/Outer$MiddleTwo$InnerThree;)V	eaten	ate	eat
-c	net/hackingmc/fightingpoet/ZombieTest	b	net/fabricmc/mappingpoet/SignaturesTest
+c	org/quiltmc/mappingpoet/Outer	a	org/quiltmc/mappingpoet/Outer
+	m	(Lorg/quiltmc/mappingpoet/Outer$MiddleTwo$InnerThree;)V	eaten	ate	eat
+c	net/hackingmc/fightingpoet/ZombieTest	b	org/quiltmc/mappingpoet/SignaturesTest

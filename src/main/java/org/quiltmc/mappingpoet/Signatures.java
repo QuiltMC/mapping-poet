@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
+package org.quiltmc.mappingpoet;
 
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -30,9 +30,8 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeVariableName;
 import com.squareup.javapoet.WildcardTypeName;
-
-import net.fabricmc.mappingpoet.signature.ClassSignature;
-import net.fabricmc.mappingpoet.signature.MethodSignature;
+import org.quiltmc.mappingpoet.signature.ClassSignature;
+import org.quiltmc.mappingpoet.signature.MethodSignature;
 
 public final class Signatures {
 

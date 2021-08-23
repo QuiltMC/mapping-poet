@@ -1,4 +1,4 @@
-.fabric {
+.quilt {
   font: 400 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #111;
   background-color: #fdfdfd;
@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 
-.fabric table {
+.quilt table {
   width: 100%;
   text-align: left;
   color: #3f3f3f;
@@ -20,20 +20,20 @@
   border: 1px solid #e8e8e8;
 }
 
-.fabric table tr:nth-child(even) {
+.quilt table tr:nth-child(even) {
   background-color: #f7f7f7;
 }
 
-.fabric table th, table td {
+.quilt table th, table td {
   padding: 1px 10px;
 }
 
-.fabric table th {
+.quilt table th {
   background-color: #f0f0f0;
   border: 1px solid #dedede;
   border-bottom-color: #c9c9c9;
 }
 
-.fabric table td {
+.quilt table td {
   border: 1px solid #e8e8e8;
 }

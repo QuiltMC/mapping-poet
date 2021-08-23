@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
+package org.quiltmc.mappingpoet;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,8 +46,7 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InnerClassNode;
-
-import net.fabricmc.mappingpoet.signature.ClassStaticContext;
+import org.quiltmc.mappingpoet.signature.ClassStaticContext;
 
 public class Main {
 
@@ -221,6 +220,10 @@ public class Main {
 	private static void writeClass(MappingsStore mappings, ClassNode classNode, Map<String, ClassBuilder> existingClasses, Function<String, Collection<String>> superGetter, ClassStaticContext context) {
 		String name = classNode.name;
 		{
+			if (classNode.outerMethod != null || classNode.outerClass != null) {
+				return;
+			}
+
 			//Block anonymous class and their nested classes
 			int lastSearch = name.length();
 			while (lastSearch != -1) {

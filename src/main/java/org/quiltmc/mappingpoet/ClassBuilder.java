@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 FabricMC
+ * Copyright (c) 2021 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.mappingpoet;
-
-import static net.fabricmc.mappingpoet.FieldBuilder.parseAnnotation;
+package org.quiltmc.mappingpoet;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -35,13 +33,12 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.InnerClassNode;
 import org.objectweb.asm.tree.MethodNode;
-
-import net.fabricmc.mappingpoet.signature.AnnotationAwareDescriptors;
-import net.fabricmc.mappingpoet.signature.AnnotationAwareSignatures;
-import net.fabricmc.mappingpoet.signature.ClassSignature;
-import net.fabricmc.mappingpoet.signature.ClassStaticContext;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationMapping;
-import net.fabricmc.mappingpoet.signature.TypeAnnotationStorage;
+import org.quiltmc.mappingpoet.signature.AnnotationAwareDescriptors;
+import org.quiltmc.mappingpoet.signature.AnnotationAwareSignatures;
+import org.quiltmc.mappingpoet.signature.ClassSignature;
+import org.quiltmc.mappingpoet.signature.ClassStaticContext;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationMapping;
+import org.quiltmc.mappingpoet.signature.TypeAnnotationStorage;
 
 public class ClassBuilder {
 
@@ -191,7 +188,7 @@ public class ClassBuilder {
 			return;
 		}
 		for (AnnotationNode annotation : regularAnnotations) {
-			builder.addAnnotation(parseAnnotation(annotation));
+			builder.addAnnotation(FieldBuilder.parseAnnotation(annotation));
 		}
 	}
 
@@ -261,7 +258,7 @@ public class ClassBuilder {
 			return;
 		}
 		for (AnnotationNode annotation : regularAnnotations) {
-			builder.addAnnotation(parseAnnotation(annotation));
+			builder.addAnnotation(FieldBuilder.parseAnnotation(annotation));
 		}
 	}
 
